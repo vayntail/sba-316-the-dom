@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    --main-font-color: rgb(54, 52, 52);
+    --secondary-font-color: rgb(134, 131, 131);
+    --widget-bg-color: rgb(247, 242, 242);
+    --widget-border-color: rgb(158, 158, 158);
+    --button-bg-color: rgb(250, 243, 243);
+    --button-hover-bg-color: rgb(241, 205, 205);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body,
+.cols-grid {
+    width: 100%;
+    height: 100%;
+}
+
+body,
+input {
+    font-family: "Space Mono", monospace;
+    color: rgb(54, 52, 52);
+}
+
+.cols-grid {
+    display: flex;
+    background-image: url("../assets/backgrounds/2.gif");
+    background-size: cover;
+    background-position: center;
+}
+
+.col {
+    flex: 1;
+    border: 1px solid rgb(104, 104, 104);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.widget {
+    flex: 1;
+    background-color: var(--widget-bg-color);
+    border: 1px solid var(--widget-border-color);
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.123);
+}
+
+button,
+input[type=submit] {
+    border: 1px solid var(--widget-border-color);
+    background-color: var(--button-bg-color);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover,
+input[type=submit]:hover {
+    background-color: var(--button-hover-bg-color);
+}
+
+
+#row1col2 {
+    min-width: 280px;
+    min-height: 100px;
+    max-height: 200px;
+    height: 15%;
+    width: 80%;
+    margin: 0 auto;
+
+    #session-timer-setup {
+        min-height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    #session-timer-in-session {
+        min-height: 200px;
+    }
+}
+
+
+#row2col2 {
+    min-width: 280px;
+    min-height: 100px;
+    max-height: 140px;
+    height: 15%;
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+
+    #music-player {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2px;
+
+        #progress-bar {
+            width: 95%;
+            border-radius: 5px;
+            background-color: rgb(255, 255, 255);
+            border: 1px solid var(--widget-border-color);
+            margin-bottom: 2px;
+
+            #filled {
+                width: 20%;
+                /* dynamically changed to song progress in JS */
+                height: 15px;
+                background-color: rgb(207, 207, 207);
+            }
+        }
+
+        #control-buttons {
+            width: fit-content;
+
+            button {
+                width: 30px;
+                height: 30px;
+
+                svg {
+                    color: var(--secondary-font-color);
+                }
+            }
+        }
+    }
+}
+
+.hidden {
+    display: none;
+}
