@@ -9,13 +9,23 @@
 </head>
 <body>
     <div class="cols-grid">
-        <div class="col">hi</div>
+        <div class="col"></div>
         <div class="col">
             <div class="row" id="row1col2">
                 <div class="widget" id="session-timer-setup">
+                    <h1>new session</h1>
                     <form>
-                        <input type="number"/>
-                        <textarea id="txtArea" rows="5" cols="35" placeholder="what are you working on today?"></textarea>
+                        <div id="time-input">
+                            <input type="text" inputmode="numeric" value="00" size="2" maxlength="2"/>
+                            <input type="text" inputmode="numeric" value="30" size="2" maxlength="2"/>
+                            <input type="text" inputmode="numeric" value="00" size="2" maxlength="2"/>
+                            <div id="add-remove-buttons">
+                                <button>+</button>
+                                <button>-</button>
+                            </div>
+                        </div>
+                        
+                        <textarea id="txtArea" rows="5" cols="35" placeholder="what will you work on?"></textarea>
                         <input type="submit" value="start session~"/>
                     </form>
                 </div>
@@ -39,7 +49,29 @@
                 </div>
             </div>
         </div>
-        <div class="col"></div>
+        <div class="col">
+            <div class="row" id="row1col3">
+                <div class="buttons">
+                    <button>change <br/>bg</button>
+                </div>
+            </div>
+            <div class="row" id="row2col3">
+                <div class="widget" id="todo-container">
+                    <h1>To-do List</h1>
+                    <div id="new-todo-box">
+                        <input type="text" placeholder="add a new to-do..."/>
+                        <input type="submit" value="add new"/>
+                    </div>
+                    <div class="todo-item">
+                        <input type="checkbox"/>
+                        yoyo
+                    </div>
+                </div>
+                <div id="widget-buttons">
+                    <button><svg width="24px" stroke-width="1.5" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M9 6L20 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3.80002 5.79999L4.60002 6.59998L6.60001 4.59999" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3.80002 11.8L4.60002 12.6L6.60001 10.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3.80002 17.8L4.60002 18.6L6.60001 16.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9 12L20 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9 18L20 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
