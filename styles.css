@@ -200,8 +200,15 @@ input[type=submit]:hover {
     
     #todo-container {
         #todo-item {
+            display: flex;
             width: 100%;
             border: 1px solid var(--widget-border-color);
+
+
+            input {
+                flex: 1;
+                width: 100%;
+            }
         }
     }
     

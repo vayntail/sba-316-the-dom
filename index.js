@@ -1,3 +1,21 @@
+// localStorage mockup data object
+const localStorage = {
+    musicPlayer: {
+        songIndex: 0,
+    },
+    sessionTimer: {
+
+    },
+    todoList: {
+        tasksOrder: [2, 1, 3],
+        tasks: [
+            {id: 1, checked: true, text: "My first task!"},
+            {id: 2, checked: true, text: "yoyoyoyo"},
+            {id: 3, checked: false, text: "unchecked task..."}
+        ],
+    }
+}
+
 const musicPlayerEl = document.querySelector("#music-player");
 const todoContainerEl = document.querySelector("#todo-container");
 const songs = [
@@ -48,6 +66,20 @@ const musicPlayer = () => {
 }
 
 const todoList = () => {
+    const todoItem = document.querySelector(".todo-item");
+    // toggle todo on and off on button click
+    document.querySelector("#todo-button").addEventListener("click", () => {});
+
+    // display saved todoList tasks from localStorage.
+    localStorage.todoList.tasks.forEach(taskObj => {
+        let clonedTodo = todoItem.cloneNode(true);
+        clonedTodo.querySelector("#checked").checked = taskObj.checked;
+        clonedTodo.querySelector("#text").value = taskObj.text;
+        todoContainerEl.append(clonedTodo);
+        // remove hidden from cloned todo
+        clonedTodo.classList.remove("hidden");
+    });
+    
     todoContainerEl.querySelector("#new-todo-box").querySelector("button").addEventListener('click', () => {
         console.log("yellow")
     });
