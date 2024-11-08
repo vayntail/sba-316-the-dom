@@ -86,7 +86,7 @@ input[type="submit"]:hover {
   min-height: 50px;
   max-height: 200px;
   height: 4%;
-  width: 80%;
+  width: 60%;
   margin-right: auto;
 
   #top-bar {
@@ -189,7 +189,7 @@ input[type="submit"]:hover {
 
 #row2col3 {
   min-width: 200px;
-  max-width: 400px;
+  max-width: 550px;
   max-height: 60%;
   min-height: 20%;
   height: 80%;

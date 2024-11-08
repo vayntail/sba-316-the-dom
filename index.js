@@ -20,6 +20,7 @@ const localStorage = {
 const musicPlayerEl = document.querySelector("#music-player");
 const todoContainerEl = document.querySelector("#todo-container");
 const soundControllerEl = document.querySelector("#sound-controller");
+const volumeSlider = soundControllerEl.querySelector("#volume-slider");
 const songs = [
   new Audio("assets/songs/InDreamland.mp3"),
   new Audio("assets/songs/One-Thing.mp3"),
@@ -33,15 +34,9 @@ window.addEventListener("load", (event) => {
 });
 
 const soundController = () => {
-  const volumeSlider = soundControllerEl.querySelector("#volume-slider");
   // set starting slider value to whatever's saved in local storage
   volumeSlider.value = localStorage.soundController.mainVolume;
   setSongVolume();
-
-  function setSongVolume() {
-    song.volume = volumeSlider.value / 100 - 0.01; // set volume as percentage
-    console.log(volumeSlider.value);
-  }
 
   volumeSlider.addEventListener("change", setSongVolume);
 };
@@ -49,9 +44,11 @@ const soundController = () => {
 const musicPlayer = () => {
   const playButton = musicPlayerEl.querySelector("#play-button");
   const pauseButton = musicPlayerEl.querySelector("#pause-button");
+  const nextButton = musicPlayerEl.querySelector("#next-button");
+  const previousButton = musicPlayerEl.querySelector("#previous-button");
+  let songIndex = 1;
 
-  setSong(0);
-
+  setSong(songIndex);
   // check autoplay permissions.
   if (navigator.getAutoplayPolicy("mediaelement") === "allowed") {
     play();
@@ -60,8 +57,10 @@ const musicPlayer = () => {
   } else if (navigator.getAutoplayPolicy("mediaelement") === "disallowed") {
     pause();
   }
+
   function setSong(index) {
-    song = songs[index];
+    songIndex = index;
+    song = songs[songIndex];
     songName = song.src.split("/").pop();
     document.getElementById("song-name").textContent = songName;
   }
@@ -77,10 +76,37 @@ const musicPlayer = () => {
     playButton.classList.remove("hidden");
     console.log("paused");
   }
+  function onSongEnded() {
+    audio.currentTime = 0; // reset to beginning
+    song.play(); // replay song
+  }
+  function next() {
+    pause();
+    if (songIndex == songs.length - 1) setSong(0);
+    else setSong(songIndex + 1);
+    setSongVolume();
+    play();
+  }
+  function previous() {
+    pause();
+    if (songIndex == 0) setSong(songs.length - 1);
+    else setSong(songIndex - 1);
+    setSongVolume();
+    play();
+  }
 
+  // events
+  song.addEventListener("ended", onSongEnded);
   playButton.addEventListener("click", play);
   pauseButton.addEventListener("click", pause);
+  nextButton.addEventListener("click", next);
+  previousButton.addEventListener("click", previous);
 };
+
+function setSongVolume() {
+  song.volume = volumeSlider.value / 100 - 0.01; // set volume as percentage
+  console.log(volumeSlider.value);
+}
 
 const todoList = () => {
   const newTodoBoxEl = todoContainerEl.querySelector("#new-todo-box");
