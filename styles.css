@@ -1,218 +1,230 @@
-@import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 
 :root {
-    --main-font-color: rgb(54, 52, 52);
-    --secondary-font-color: rgb(134, 131, 131);
-    --widget-bg-color: rgb(247, 242, 242);
-    --widget-border-color: rgb(158, 158, 158);
-    --button-bg-color: rgb(250, 243, 243);
-    --button-hover-bg-color: rgb(241, 205, 205);
+  --main-font-color: rgb(54, 52, 52);
+  --secondary-font-color: rgb(134, 131, 131);
+  --widget-bg-color: rgb(247, 242, 242);
+  --widget-border-color: rgb(158, 158, 158);
+  --button-bg-color: rgb(250, 243, 243);
+  --button-hover-bg-color: rgb(241, 205, 205);
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html,
 body,
 .cols-grid {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 body,
 input,
 button {
-    font-family: "Space Mono", monospace;
-    color: rgb(54, 52, 52);
+  font-family: "Space Mono", monospace;
+  color: rgb(54, 52, 52);
 }
 
 .cols-grid {
-    display: flex;
-    background-image: url("../assets/backgrounds/2.gif");
-    background-size: cover;
-    background-position: center;
+  display: flex;
+  background-image: url("../assets/backgrounds/2.gif");
+  background-size: cover;
+  background-position: center;
 }
 
 .col {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .row {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .widget {
-    flex: 1;
-    background-color: var(--widget-bg-color);
-    border: 1px solid var(--widget-border-color);
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.123);
+  flex: 1;
+  background-color: var(--widget-bg-color);
+  border: 1px solid var(--widget-border-color);
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.123);
 }
 
 button,
-input[type=submit] {
-    border: 1px solid var(--widget-border-color);
-    background-color: var(--button-bg-color);
-    border-radius: 5px;
-    cursor: pointer;
+input[type="submit"] {
+  border: 1px solid var(--widget-border-color);
+  background-color: var(--button-bg-color);
+  border-radius: 5px;
+  cursor: pointer;
 
-    svg {
-        color: var(--secondary-font-color);
-    }
+  svg {
+    color: var(--secondary-font-color);
+  }
 }
-input, textarea {
-    border-radius: 5px;
-    border: 1px solid var(--widget-border-color);
+input,
+textarea {
+  border-radius: 5px;
+  border: 1px solid var(--widget-border-color);
 }
 
 button:hover,
-input[type=submit]:hover {
-    background-color: var(--button-hover-bg-color);
+input[type="submit"]:hover {
+  background-color: var(--button-hover-bg-color);
 }
 
+#row2col1 {
+  min-width: 280px;
+  max-width: 350px;
+  min-height: 50px;
+  max-height: 200px;
+  height: 4%;
+  width: 80%;
+  margin-right: auto;
 
+  #top-bar {
+    height: 100%; /* change this in script when collapse */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 10px;
+    border-bottom: 1px solid var(--widget-border-color);
+
+    .volume-button {
+      height: 40px;
+
+      svg {
+        height: 100%;
+        width: 100%;
+      }
+    }
+    .volume-slider {
+      width: 100%;
+    }
+  }
+}
 
 #row1col2 {
-    min-width: 280px;
-    max-width: 350px;
-    min-height: 100px;
-    max-height: 200px;
-    height: 15%;
-    width: 80%;
-    margin: 0 auto;
+  min-width: 280px;
+  max-width: 350px;
+  min-height: 100px;
+  max-height: 200px;
+  height: 15%;
+  width: 80%;
+  margin: 0 auto;
 
-    #session-timer-setup {
-        min-height: 400px;
+  #session-timer-setup {
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+
+      #time-input {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        form {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 4px;
-
-            #time-input {
-                display: flex;
-                input {
-                    font-size: 20px;
-                    font-family: "Nunito", sans-serif;
-                    font-weight: 200;
-                }
-                #add-remove-buttons {
-                    display: flex;
-                    flex-direction: column;
-                }
-            }
+        input {
+          font-size: 20px;
+          font-family: "Nunito", sans-serif;
+          font-weight: 200;
         }
+        #add-remove-buttons {
+          display: flex;
+          flex-direction: column;
+        }
+      }
     }
+  }
 
-    #session-timer-in-session {
-        min-height: 200px;
-    }
+  #session-timer-in-session {
+    min-height: 200px;
+  }
 }
 
-
 #row2col2 {
-    min-width: 280px;
-    min-height: 100px;
-    max-height: 140px;
-    height: 15%;
-    width: 80%;
-    margin: 0 auto;
-    position: relative;
+  min-width: 280px;
+  min-height: 100px;
+  max-height: 140px;
+  height: 15%;
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
 
-    #music-player {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2px;
+  #music-player {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
 
-        #progress-bar {
-            width: 95%;
-            border-radius: 5px;
-            background-color: rgb(255, 255, 255);
-            border: 1px solid var(--widget-border-color);
-            margin-bottom: 2px;
-
-            #filled {
-                width: 20%;
-                /* dynamically changed to song progress in JS */
-                height: 15px;
-                background-color: rgb(207, 207, 207);
-            }
-        }
-
-        #control-buttons {
-            width: fit-content;
-            button {
-                width: 30px;
-                height: 30px;
-            }
-        }
+    #control-buttons {
+      width: fit-content;
+      button {
+        width: 30px;
+        height: 30px;
+      }
     }
+  }
 }
 
 #row1col3 {
-    .buttons {
-        width: fit-content;
-        margin-left: auto;
-    }
+  .buttons {
+    width: fit-content;
+    margin-left: auto;
+  }
 }
 
 #row2col3 {
-    min-width: 200px;
-    max-width: 400px;
-    max-height: 60%;
-    min-height: 20%;
-    height: 80%;
-    width: 80%;
-    display: flex;
-    margin-left: auto;
-    justify-content: end;
-    
-    #widget-buttons {
-        display: flex;
-        justify-content: right;
-    }
+  min-width: 200px;
+  max-width: 400px;
+  max-height: 60%;
+  min-height: 20%;
+  height: 80%;
+  width: 80%;
+  display: flex;
+  margin-left: auto;
+  justify-content: end;
 
-    button {
-        width: 40px;
-        height: 40px;
-        svg {
-            width: 90%;
-            height: 90%;
-        }
+  #widget-buttons {
+    display: flex;
+    justify-content: right;
+  }
+
+  button {
+    width: 40px;
+    height: 40px;
+    svg {
+      width: 90%;
+      height: 90%;
     }
-    
-    #todo-container {
-        .todo-item {
-            display: flex;
-            width: 100%;
-            border: 1px solid var(--widget-border-color);
-            #text {
-                flex: 1;
-                width: 100%;
-            }
-        }
+  }
+
+  #todo-container {
+    .todo-item {
+      display: flex;
+      width: 100%;
+      border: 1px solid var(--widget-border-color);
+      #text {
+        flex: 1;
+        width: 100%;
+      }
     }
-    
+  }
 }
 
-
 .hidden {
-    display: none;
+  display: none;
 }
