@@ -20,7 +20,6 @@ const localStorage = {
 const musicPlayerEl = document.querySelector("#music-player");
 const todoContainerEl = document.querySelector("#todo-container");
 const soundControllerEl = document.querySelector("#sound-controller");
-const volumeSlider = soundControllerEl.querySelector("#volume-slider");
 const songs = [
   new Audio("assets/songs/InDreamland.mp3"),
   new Audio("assets/songs/One-Thing.mp3"),
@@ -33,22 +32,29 @@ window.addEventListener("load", (event) => {
   soundController();
 });
 
-const soundController = () => {
-  // set starting slider value to whatever's saved in local storage
-  volumeSlider.value = localStorage.soundController.mainVolume;
-  setSongVolume();
-
-  volumeSlider.addEventListener("change", setSongVolume);
-};
+const soundController = () => {};
 
 const musicPlayer = () => {
+  // music variables
   const playButton = musicPlayerEl.querySelector("#play-button");
   const pauseButton = musicPlayerEl.querySelector("#pause-button");
   const nextButton = musicPlayerEl.querySelector("#next-button");
   const previousButton = musicPlayerEl.querySelector("#previous-button");
+  // volume variables
+  const volumeSlider = soundControllerEl.querySelector("#volume-slider");
+  const soundOffButton = soundControllerEl.querySelector("#sound-off-button");
+  const soundMinButton = soundControllerEl.querySelector("#sound-min-button");
+  const soundLowButton = soundControllerEl.querySelector("#sound-low-button");
+  const soundHighButton = soundControllerEl.querySelector("#sound-high-button");
+
   let songIndex = 1;
 
   setSong(songIndex);
+  // set starting slider value to whatever's saved in local storage
+  volumeSlider.value = localStorage.soundController.mainVolume;
+
+  setSongVolume();
+
   // check autoplay permissions.
   if (navigator.getAutoplayPolicy("mediaelement") === "allowed") {
     play();
@@ -94,6 +100,34 @@ const musicPlayer = () => {
     setSongVolume();
     play();
   }
+  function setSongVolume() {
+    song.volume = volumeSlider.value / 100 - 0.01; // set volume as percentage
+    console.log(song.volume);
+
+    // set appopriate icons based on value.
+    hideAllIcons();
+    if (song.volume == 0) {
+      soundOffButton.classList.remove("hidden");
+    } else if (song.volume <= 0.4) {
+      soundMinButton.classList.remove("hidden");
+    } else if (song.volume <= 0.8) {
+      soundLowButton.classList.remove("hidden");
+    } else {
+      soundHighButton.classList.remove("hidden");
+    }
+    function hideAllIcons() {
+      const buttons = soundControllerEl.querySelector(
+        "#volume-button-container"
+      ).children;
+      for (let button of buttons) button.classList.add("hidden");
+    }
+  }
+  function mute() {
+    console.log("add mute feature here");
+  }
+  function unmute() {
+    console.log("add unmute feature here");
+  }
 
   // events
   song.addEventListener("ended", onSongEnded);
@@ -101,12 +135,12 @@ const musicPlayer = () => {
   pauseButton.addEventListener("click", pause);
   nextButton.addEventListener("click", next);
   previousButton.addEventListener("click", previous);
+  volumeSlider.addEventListener("change", setSongVolume);
+  soundOffButton.addEventListener("click", unmute);
+  [soundMinButton, soundLowButton, soundHighButton].forEach((button) => {
+    button.addEventListener("click", mute);
+  });
 };
-
-function setSongVolume() {
-  song.volume = volumeSlider.value / 100 - 0.01; // set volume as percentage
-  console.log(volumeSlider.value);
-}
 
 const todoList = () => {
   const newTodoBoxEl = todoContainerEl.querySelector("#new-todo-box");

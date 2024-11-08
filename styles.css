@@ -98,6 +98,7 @@ input[type="submit"]:hover {
     border-bottom: 1px solid var(--widget-border-color);
 
     .volume-button {
+      cursor: pointer;
       height: 40px;
 
       svg {
@@ -193,7 +194,7 @@ input[type="submit"]:hover {
   max-height: 60%;
   min-height: 20%;
   height: 80%;
-  width: 90%;
+  width: 80%;
   display: flex;
   margin-left: auto;
   justify-content: end;
