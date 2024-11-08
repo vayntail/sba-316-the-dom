@@ -4,7 +4,7 @@ const localStorage = {
     songIndex: 0,
   },
   soundController: {
-    mainVolume: 20,
+    mainVolume: 15,
   },
   sessionTimer: {},
   todoList: {
@@ -24,6 +24,7 @@ const songs = [
   new Audio("assets/songs/InDreamland.mp3"),
   new Audio("assets/songs/One-Thing.mp3"),
 ];
+let song;
 
 window.addEventListener("load", (event) => {
   musicPlayer();
@@ -31,11 +32,24 @@ window.addEventListener("load", (event) => {
   soundController();
 });
 
+const soundController = () => {
+  const volumeSlider = soundControllerEl.querySelector("#volume-slider");
+  // set starting slider value to whatever's saved in local storage
+  volumeSlider.value = localStorage.soundController.mainVolume;
+  setSongVolume();
+
+  function setSongVolume() {
+    song.volume = volumeSlider.value / 100 - 0.01; // set volume as percentage
+    console.log(volumeSlider.value);
+  }
+
+  volumeSlider.addEventListener("change", setSongVolume);
+};
+
 const musicPlayer = () => {
   const playButton = musicPlayerEl.querySelector("#play-button");
   const pauseButton = musicPlayerEl.querySelector("#pause-button");
 
-  let song;
   setSong(0);
 
   // check autoplay permissions.
@@ -89,14 +103,4 @@ const todoList = () => {
     .addEventListener("click", () => {
       console.log("yellow");
     });
-};
-
-const soundController = () => {
-  const topBar = soundControllerEl.querySelector("#top-bar");
-
-  // Start collapsed.
-  // on collapsed, set height of sound controller to height of top bar.
-  soundControllerEl.style.height = topBar.clientHeight.toString();
-
-  console.log(topBar.clientHeight);
 };
