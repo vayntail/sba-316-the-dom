@@ -83,24 +83,29 @@ const musicPlayer = () => {
 };
 
 const todoList = () => {
+  const newTodoBoxEl = todoContainerEl.querySelector("#new-todo-box");
   const todoItem = document.querySelector(".todo-item");
   // toggle todo on and off on button click
   document.querySelector("#todo-button").addEventListener("click", () => {});
 
   // display saved todoList tasks from localStorage.
-  localStorage.todoList.tasks.forEach((taskObj) => {
+  localStorage.todoList.tasks.forEach((taskObj) => createNewItem(taskObj));
+
+  function createNewItem(taskObj) {
     let clonedTodo = todoItem.cloneNode(true);
     clonedTodo.querySelector("#checked").checked = taskObj.checked;
     clonedTodo.querySelector("#text").value = taskObj.text;
     todoContainerEl.append(clonedTodo);
     // remove hidden from cloned todo
     clonedTodo.classList.remove("hidden");
+  }
+  newTodoBoxEl.querySelector("button").addEventListener("click", () => {
+    // if add new button is clicked, check if input is blank or not.
+    let text = newTodoBoxEl.firstElementChild.value;
+    if (text != "") {
+      createNewItem({ id: 1, checked: false, text: text });
+    } else {
+      newTodoBoxEl.firstElementChild.focus();
+    }
   });
-
-  todoContainerEl
-    .querySelector("#new-todo-box")
-    .querySelector("button")
-    .addEventListener("click", () => {
-      console.log("yellow");
-    });
 };
