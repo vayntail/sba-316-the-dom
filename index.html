@@ -187,6 +187,7 @@
                   value="00"
                   size="2"
                   maxlength="2"
+                  id="hours-input"
                 />
                 <input
                   type="text"
@@ -194,6 +195,7 @@
                   value="30"
                   size="2"
                   maxlength="2"
+                  id="minutes-input"
                 />
                 <input
                   type="text"
@@ -201,6 +203,7 @@
                   value="00"
                   size="2"
                   maxlength="2"
+                  id="seconds-input"
                 />
                 <div id="add-remove-buttons">
                   <button>+</button>
@@ -214,7 +217,7 @@
                 cols="35"
                 placeholder="what will you work on?"
               ></textarea>
-              <input type="submit" value="start session~" />
+              <button id="start-button">start session~</button>
             </form>
           </div>
           <div class="widget hidden" id="session-timer-in-session"></div>
@@ -254,7 +257,7 @@
                   ></path>
                 </svg>
               </button>
-              <button id="pause-button">
+              <button class="hidden" id="pause-button">
                 <svg
                   width="24px"
                   height="24px"
@@ -340,7 +343,7 @@
           <div class="widget" id="todo-container">
             <h1>To-do List</h1>
             <div id="new-todo-box">
-              <input type="text" placeholder="add a new to-do..." />
+              <input type="text" placeholder="add a new to-do..." required />
               <button>add new</button>
             </div>
             <div class="todo-item hidden">

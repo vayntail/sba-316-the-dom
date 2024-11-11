@@ -20,6 +20,7 @@ const localStorage = {
 const musicPlayerEl = document.querySelector("#music-player");
 const todoContainerEl = document.querySelector("#todo-container");
 const soundControllerEl = document.querySelector("#sound-controller");
+const sessionTimerSetupEl = document.querySelector("#session-timer-setup");
 const songs = [
   new Audio("assets/songs/InDreamland.mp3"),
   new Audio("assets/songs/One-Thing.mp3"),
@@ -30,7 +31,42 @@ window.addEventListener("load", (event) => {
   musicPlayer();
   todoList();
   soundController();
+  sessionTimer();
 });
+
+const sessionTimer = () => {
+  sessionTimerSetup();
+  function sessionTimerSetup() {
+    const sessionStartButton =
+      sessionTimerSetupEl.querySelector("#start-button");
+    sessionStartButton.addEventListener("click", () => {});
+
+    // Validates through time inputs and returns as Date object
+    const hoursInput = sessionTimerSetupEl.querySelector("#hours-input");
+    const minutesInput = sessionTimerSetupEl.querySelector("#minutes-input");
+    const secondsInput = sessionTimerSetupEl.querySelector("#seconds-input");
+
+    hoursInput.addEventListener("input", inputValidateHandler);
+    minutesInput.addEventListener("input", inputValidateHandler);
+    secondsInput.addEventListener("input", inputValidateHandler);
+    hoursInput.addEventListener("propertychange", inputValidateHandler); // for IE8
+    minutesInput.addEventListener("propertychange", inputValidateHandler); // for IE8
+    secondsInput.addEventListener("propertychange", inputValidateHandler); // for IE8
+
+    function inputValidateHandler(event) {
+      // If anything but numbers are typed, remove it.
+      console.log(isNumeric(event.target.value));
+      if (!isNumeric(event.target.value)) {
+        event.target.value = event.target.value.slice(0, -1);
+      }
+    }
+
+    function isNumeric(str) {
+      if (typeof str != "string") return false; // only process strings
+      return !isNaN(str) && !isNaN(parseFloat(str));
+    }
+  }
+};
 
 const soundController = () => {};
 
@@ -83,7 +119,7 @@ const musicPlayer = () => {
     console.log("paused");
   }
   function onSongEnded() {
-    audio.currentTime = 0; // reset to beginning
+    song.currentTime = 0; // reset to beginning
     song.play(); // replay song
   }
   function next() {
@@ -155,7 +191,7 @@ const todoList = () => {
     let clonedTodo = todoItem.cloneNode(true);
     clonedTodo.querySelector("#checked").checked = taskObj.checked;
     clonedTodo.querySelector("#text").value = taskObj.text;
-    todoContainerEl.append(clonedTodo);
+    todoContainerEl.appendChild(clonedTodo);
     // remove hidden from cloned todo
     clonedTodo.classList.remove("hidden");
   }
